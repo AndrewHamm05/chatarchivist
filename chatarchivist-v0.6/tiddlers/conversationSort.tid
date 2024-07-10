@@ -1,0 +1,84 @@
+created: 20240625142233044
+modified: 20240628184636685
+tags: $:/tags/Macro
+title: conversationSort
+type: text/vnd.tiddlywiki
+
+\define alphaFilter()
+<div class="scrollable-box">
+<$list filter="[tag[chatgptconversation]!prefix[$]search:conversation_title<searchfor>sort[conversation_title]]">
+<$button class="tc-btn-invisible  tc-tiddlylink" tooltip={{!!conversation_title}}>
+<$view field="conversation_title"/>
+<$action-navigate $to={{!!title}}/>
+<$action-setfield $tiddler="transcludeMessage" id={{!!title}} conversation_index="1"/>
+<$action-setfield $tiddler=<<currentTiddler>> conversation_index="1"/>
+</$button>
+<hr>
+\end
+
+\define revAlphaFilter()
+<div class="scrollable-box">
+<$list filter="[tag[chatgptconversation]!prefix[$]search:conversation_title<searchfor>sort[conversation_title]reverse[]]">
+<$button class="tc-btn-invisible  tc-tiddlylink" tooltip={{!!conversation_title}}>
+<$view field="conversation_title"/>
+<$action-navigate $to={{!!title}}/>
+<$action-setfield $tiddler="transcludeMessage" id={{!!title}} conversation_index="1"/>
+<$action-setfield $tiddler=<<currentTiddler>> conversation_index="1"/>
+</$button>
+<hr>
+\end
+
+\define createdFilter()
+<div class="scrollable-box">
+<$list filter="[tag[chatgptconversation]!prefix[$]search:conversation_title<searchfor>sort[created]reverse[]]">
+<$button class="tc-btn-invisible  tc-tiddlylink" tooltip={{!!conversation_title}}>
+<$view field="conversation_title"/>
+<$action-navigate $to={{!!title}}/>
+<$action-setfield $tiddler="transcludeMessage" id={{!!title}} conversation_index="1"/>
+<$action-setfield $tiddler=<<currentTiddler>> conversation_index="1"/>
+</$button>
+<hr>
+\end
+
+\define revCreatedFilter()
+<div class="scrollable-box">
+<$list filter="[tag[chatgptconversation]!prefix[$]search:conversation_title<searchfor>sort[created]]">
+<$button class="tc-btn-invisible  tc-tiddlylink" tooltip={{!!conversation_title}}>
+<$view field="conversation_title"/>
+<$action-navigate $to={{!!title}}/>
+<$action-setfield $tiddler="transcludeMessage" id={{!!title}} conversation_index="1"/>
+<$action-setfield $tiddler=<<currentTiddler>> conversation_index="1"/>
+</$button>
+<hr>
+\end
+
+\define numPrompts()
+<$list filter="[tag[chatgptconversation]!prefix[$]]" variable="conversation">
+<$set name="numPrompts" value={{{[tag[chatgptmessage]conversation_id<conversation>count[]]}}}>
+<$action-setfield $tiddler=<<conversation>> $field="num_prompts" $value=<<numPrompts>>/>
+<$action-setfield $tiddler=<<currentTiddler>> conversation_index="1"/>
+\end
+
+\define numPromptsFilter()
+<div class="scrollable-box">
+<$list filter="[tag[chatgptconversation]!prefix[$]search:conversation_title<searchfor>nsort[num_prompts]]">
+<$button class="tc-btn-invisible  tc-tiddlylink" tooltip={{!!conversation_title}}>
+<$view field="conversation_title"/>
+<$action-navigate $to={{!!title}}/>
+<$action-setfield $tiddler="transcludeMessage" id={{!!title}} conversation_index="1"/>
+<$action-setfield $tiddler=<<currentTiddler>> conversation_index="1"/>
+</$button>
+<hr>
+\end
+
+\define revNumPromptsFilter()
+<div class="scrollable-box">
+<$list filter="[tag[chatgptconversation]!prefix[$]search:conversation_title<searchfor>nsort[num_prompts]reverse[]]">
+<$button class="tc-btn-invisible  tc-tiddlylink" tooltip={{!!conversation_title}}>
+<$view field="conversation_title"/>
+<$action-navigate $to={{!!title}}/>
+<$action-setfield $tiddler="transcludeMessage" id={{!!title}} conversation_index="1"/>
+<$action-setfield $tiddler=<<currentTiddler>> conversation_index="1"/>
+</$button>
+<hr>
+\end
