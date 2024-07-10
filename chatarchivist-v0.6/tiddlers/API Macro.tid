@@ -1,5 +1,5 @@
 created: 20240708143516421
-modified: 20240710174817611
+modified: 20240710194026709
 tags: $:/tags/Macro
 title: API Macro
 type: text/vnd.tiddlywiki
@@ -47,11 +47,14 @@ tags="chatgptmessage"/>
     "model": "gpt-4o",
     "messages": [
       {
+        "role": "system",
+        "content": "You are an AI assistant named ChatArchivist Bot."
+      },
+      {
         "role": "user",
         "content": "<<promptValue>>"
       }
-    ],
-   "stream": true
+    ]
   }
   \end request-body
 

@@ -1,7 +1,6 @@
 created: 20240708172321168
-modified: 20240709191603605
+modified: 20240710201507420
 tags: 
-test: 1000000
 title: ChatGPT Conversation
 type: text/vnd.tiddlywiki
 
@@ -17,7 +16,7 @@ Archive Chat
 Send
 <$macrocall $name="openaiTextGenerate" promptValue={{$:/chatarchivist/OpenAIAPI/prompt}}/>
 <$action-sendmessage $message="tm-notify" $param="$:/chatarchivist/chatProgressNotify"/>
-<$action-createtiddler 
+<$action-createtiddler  
 $basetitle=<<msg_id>>
 text={{$:/chatarchivist/OpenAIAPI/prompt}}
 conversation_id=<<conv_id>>
@@ -29,6 +28,16 @@ tags="chatgptmessage"/>
 <$action-deletefield $tiddler="$:/chatarchivist/OpenAIAPI/prompt" $field="text"/>
 </$button>
 
+<div style="height: 420px; overflow: auto; border: 1px solid #ccc; border-radius: 8px; padding: 10px;">
 <$list filter="[tag[chatgptmessage]conversation_id<conv_id>sort[timestamp]]">
-''<$view $tiddler=<<currentTiddler>> field="author" />:''<br>
-<$view $tiddler=<<currentTiddler>> field="text" /><hr>
+
+<%if [{!!author}match[user]]%>
+<div style="border-radius: 8px; background-color: #d0e6f7; padding: 6px; margin-top: 10px;">
+''<$view $tiddler=<<currentTiddler>> field="author" />:''
+<$transclude $mode="block"/>
+</div>
+<%elseif [{!!author}match[assistant]]%>
+<div style="border-radius: 8px; background-color: #e2f7d0; padding: 6px; margin-top: 10px;">
+''<$view $tiddler=<<currentTiddler>> field="author" />:''
+<$transclude $mode="block"/>
+</div>
